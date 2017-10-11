@@ -7,10 +7,10 @@
       background-size: cover;
   }
 
-.container {
+.jumbotron {
 
-  margin-left: 50em;
-
+  background-color: rgba(0, 0, 0, 0.5);
+    color:#000;
 }
 
 </style>
@@ -28,6 +28,7 @@
     </div>
   <% end %>
 
+<div class="jumbotron">
 <form class="form-horizontal"> 
   <div class="container">
 
@@ -64,9 +65,11 @@
   </div>
 
   <%= link_to 'Back', posts_path %>
-
+<script src="https://cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script>tinymce.init({ selector:'textarea' });</script>
   </div>
 </form>
+</div>
 <% end %>
 
 

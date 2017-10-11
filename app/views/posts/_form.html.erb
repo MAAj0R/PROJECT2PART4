@@ -1,0 +1,77 @@
+
+<style>
+  
+  body {
+
+      background-image: url(http://cdn.mos.cms.futurecdn.net/823400b5bf8b97bb87c9d01fcb6207c2.jpg);
+      background-size: cover;
+  }
+
+.container {
+
+  margin-left: 50em;
+
+}
+
+</style>
+
+<%= form_for(@post, html: { multipart: true}) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<form class="form-horizontal"> 
+  <div class="container">
+
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :content %>
+    <%= f.text_area :content %>
+  </div>
+
+  <div class="field">
+    <%= f.label :language %>
+    <%= select_tag "post[language_id]", options_from_collection_for_select(Language.all, "id", "name") %>
+  </div>
+
+  <div class="field">
+    <%= f.label :game %>
+    <%= select_tag "post[game_id]", options_from_collection_for_select(Game.all, "id", "name") %>
+  </div>
+
+
+  <div class="field">
+    <%= f.label :picture %>
+    <%= f.file_field :picture %>
+    <%= f.hidden_field :picture_cache %>
+    <%= image_tag(@post.picture, size:"64x64") if @post.picture?  %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+
+  <%= link_to 'Back', posts_path %>
+
+  </div>
+</form>
+<% end %>
+
+
+</body>
+</html> 
+
+
+
